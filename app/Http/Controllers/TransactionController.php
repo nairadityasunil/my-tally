@@ -86,7 +86,7 @@ class TransactionController extends Controller
         $all_paid = All_transaction::where('action','=','paid')->get();
         $data = compact('all_paid');
         return view('all_paid')->with($data);
-    }
+    }   
 
     public function delete_transaction($id)
     {

@@ -89,8 +89,8 @@
                                             <td>{{$recievables->transaction_id}}</td>
                                             <td>{{$recievables->created_at}}</td>
                                             <td>
-                                                <a href="">
-                                                    <button type="button" class="btn _btn">Clear</button>
+                                                <a href="{{url('confirm_receivable')}}/{{$recievables->id}}">
+                                                    <button type="button" class="btn _btn">Received</button>
                                                 </a>
                                             </td>
                                             <td>

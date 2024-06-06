@@ -26,6 +26,8 @@ Route::get('/delete_transaction/{id}' ,[TransactionController::class , 'delete_t
 // Routes related to account recievables section
 Route::get('/all_recievables', [RecievablesController::class,'view_all_recievables'])->name('all_recievables');
 Route::get('/new_receivable' ,[RecievablesController::class, 'new_receivable'])->name('new_receivable');
+Route::get('/confirm_receivable/{id}' ,[RecievablesController::class, 'confirm_receivable'])->name('new_receivable');
+
 
 // Routes related to account payable sections
 
