@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\All_transaction;
 use App\Models\Recievable;
+use App\Models\Payables;
 
 use Illuminate\Http\Request;
 
@@ -90,25 +91,7 @@ class TransactionController extends Controller
 
     public function delete_transaction($id)
     {
-        $delete_transaction = All_transaction::find($id);
-        if (!is_null($delete_transaction))
-        {
-            $transaction_id = All_transaction::where('id','=',$id)->get();
-            if($delete_transaction->delete())
-            {
-                $transaction = Recievable::where('transaction_id','=',$transaction_id)->get();
-                if (!is_null($transaction))
-                {
-                    foreach($transaction as $delete_id)
-                    {
-                        $delete_id->delete();
-                    }
-                    session()->flash('status','Entry Deleted');
-                    return redirect('/all_transactions');
-                }
-            }
-        }
-    
+        
     }
 }
 

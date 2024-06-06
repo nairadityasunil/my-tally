@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirm Receivable</title>
+    <title>New Receivable</title>
     <link rel="stylesheet" href="frontend/css/bootstrap.min.css">
     <script type="text/javascript" src="frontend/javascript/bootstrap.min.js"></script>
     <script type="text/javascript " src="frontend/javascript/bootstrap.bundle.min.js"></script>
@@ -23,21 +23,10 @@
                         <div class="col-sm-8">
                             <div class="card" style="margin-top : 10px; max-height:93vh;">
                                 <div class="card-body overflow-auto">
-                                    <h1 class="text-center">Confirm Receivable</h1>
+                                    <h1 class="text-center">New Receivable</h1>
                                     <br>
-                                    <form action="{{route('save_receivable')}}" method="POST">
+                                    <form action="{{route('save_new_receivable')}}" method="POST">
                                         @csrf
-                                        <div class="form-group row">
-                                    
-                                            <div class="col-sm-4">
-                                                <center>
-                                                    <label for="name" class="col-form-label">Receivable Id :</label>
-                                                </center>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="text" name="receivable_id" class="form-control" id="receivable_id" placeholder="" value="{{$entry_id->id}}" readonly="readonly"> 
-                                            </div>
-                                        </div>
                                         <div class="form-group row">
                                     
                                             <div class="col-sm-4">
@@ -46,7 +35,7 @@
                                                 </center>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="text" name="name" class="form-control" id="name" placeholder="" value="{{$entry_id->name}}" readonly="readonly">
+                                                <input type="text" name="name" class="form-control" id="name" placeholder="" value="" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -56,39 +45,23 @@
                                                 </center>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="text" name="purpose" class="form-control" id="purpose" placeholder="" value="{{$entry_id->purpose}}" readonly="readonly">
+                                                <input type="text" name="purpose" class="form-control" id="purpose" placeholder="" value="">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
                                                 <center>
-                                                    <label for="action" class="col-form-label">Action :</label>
+                                                    <label for="mode" class="col-form-label">Mode :</label>
                                                 </center>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="row ">
-                                                    <div class="col-sm-4">
-                                                        <input type="text" name="action" class="form-control" id="purpose" placeholder="" value="received" readonly="readonly">
-                                                    </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <center>
-                                                                    <label for="mode" class="col-form-label">Mode :</label>
-                                                                </center>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <select class="form-select" aria-label="Default select example" name="mode">
-                                                                    <option value="" selected>-</option>
-                                                                    <option value="cash">Cash</option>
-                                                                    <option value="bank transfer">Bank Transfer</option>
-                                                                    <option value="net banking">Net Banking</option>
-                                                                    <option value="upi">UPI</option>
-                                                                </select>   
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> 
+                                            <div class="col-sm-6">               
+                                                <select class="form-select" aria-label="Default select example" name="mode">
+                                                    <option value="" selected>-</option>
+                                                    <option value="cash">Cash</option>
+                                                    <option value="bank transfer">Bank Transfer</option>
+                                                    <option value="net banking">Net Banking</option>
+                                                    <option value="upi">UPI</option>
+                                                </select>   
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -98,7 +71,7 @@
                                                 </center>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="text" name="total_amount" class="form-control" id="name" placeholder="" value="{{$entry_id->amount}}" readonly="readonly">
+                                                <input type="text" name="total_amount" class="form-control" id="name" placeholder="" value="">
                                             </div>
                                         </div>
                                        
@@ -131,7 +104,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($all_receivables as $receivables)
-                                        @if($receivables->id != $entry_id->id)
+                                        
                                             <tr>
                                                 <td>{{$receivables->id}}</td>
                                                 <td>{{$receivables->name}}</td>
@@ -144,7 +117,7 @@
                                                 </a>
                                             </td>
                                             </tr>
-                                        @endif
+                                   
                                     @endforeach
                                 </tbody>
                             </table>    

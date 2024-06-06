@@ -77,18 +77,18 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($all_recievables as $recievables)
+                                    @foreach ($all_payables as $payables)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$recievables->id}}</td>
-                                            <td>{{$recievables->name}}</td>
-                                            <td>{{$recievables->purpose}}</td>
-                                            <td>{{$recievables->mode}}</td>
-                                            <td style="color:green;"><b>{{$recievables->amount}}</b></td>
-                                            <td>{{$recievables->transaction_id}}</td>
-                                            <td>{{$recievables->created_at}}</td>
+                                            <td>{{$payables->id}}</td>
+                                            <td>{{$payables->name}}</td>
+                                            <td>{{$payables->purpose}}</td>
+                                            <td>{{$payables->mode}}</td>
+                                            <td style="color:green;"><b>{{$payables->amount}}</b></td>
+                                            <td>{{$payables->transaction_id}}</td>
+                                            <td>{{$payables->created_at}}</td>
                                             <td>
-                                                <a href="{{url('confirm_receivable')}}/{{$recievables->id}}" class="btn btn-success" style="border : 0px;">
+                                                <a href="{{url('confirm_receivable')}}/{{$payables->id}}" class="btn btn-success" style="border : 0px;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
 </svg> <b>Recd</b>

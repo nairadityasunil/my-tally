@@ -58,8 +58,8 @@
                                                     <div class="col-sm-3">
                                                         <select class="form-select" aria-label="Default select example" name="action">
                                                             <option value="" selected>-</option>
-                                                            <option value="Paid">Paid</option>
-                                                            <option value="Received">Received</option>
+                                                            <option value="paid">Paid</option>
+                                                            <option value="received">Received</option>
                                                         </select>   
                                                     </div>
                                                     <div class="col-sm-9">

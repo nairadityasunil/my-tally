@@ -27,10 +27,13 @@ Route::get('/delete_transaction/{id}' ,[TransactionController::class , 'delete_t
 Route::get('/all_recievables', [RecievablesController::class,'view_all_recievables'])->name('all_recievables');
 Route::get('/new_receivable' ,[RecievablesController::class, 'new_receivable'])->name('new_receivable');
 Route::get('/confirm_receivable/{id}' ,[RecievablesController::class, 'confirm_receivable'])->name('new_receivable');
+Route::post('/save_new_receivable',[RecievablesController::class, 'save_new_receivable'])->name('save_new_receivable');
+Route::post('/save_receivable',[RecievablesController::class, 'save_receivable'])->name('save_receivable');
+Route::post('/search_receivable',[RecievablesController::class,'search_receivable'])->name('search_receivable');
 
 
 // Routes related to account payable sections
-
+Route::get('$all_payables', [RecievablesController::class,'view_all_payables'])->name('all_payables');
 // Routes related to personal expense section
 
 // Routes related to user master
