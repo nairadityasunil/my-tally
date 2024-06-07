@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Accounts</title>
+    <title>Confirm Payable</title>
     <link rel="stylesheet" href="frontend/css/bootstrap.min.css">
     <script type="text/javascript" src="frontend/javascript/bootstrap.min.js"></script>
     <script type="text/javascript " src="frontend/javascript/bootstrap.bundle.min.js"></script>
@@ -23,18 +23,30 @@
                         <div class="col-sm-8">
                             <div class="card" style="margin-top : 10px; max-height:93vh;">
                                 <div class="card-body overflow-auto">
-                                    <h1 class="text-center">New Transaction</h1>
+                                    <h1 class="text-center">Confirm Payable</h1>
                                     <br>
-                                    <form action="{{route('save_transaction')}}" method="POST">
+                                    <form action="{{route('save_payable')}}" method="POST">
                                         @csrf
                                         <div class="form-group row">
+                                    
+                                            <div class="col-sm-4">
+                                                <center>
+                                                    <label for="name" class="col-form-label">Payable Id :</label>
+                                                </center>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="payable_id" class="form-control" id="payable_id" placeholder="" value="{{$entry_id->id}}" readonly="readonly"> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                    
                                             <div class="col-sm-4">
                                                 <center>
                                                     <label for="name" class="col-form-label">Name :</label>
                                                 </center>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="text" name="name" class="form-control" id="name" placeholder="" value="">
+                                                <input type="text" name="name" class="form-control" id="name" placeholder="" value="{{$entry_id->name}}" readonly="readonly">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -44,7 +56,7 @@
                                                 </center>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="text" name="purpose" class="form-control" id="purpose" placeholder="" value="">
+                                                <input type="text" name="purpose" class="form-control" id="purpose" placeholder="" value="{{$entry_id->purpose}}" readonly="readonly">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -55,14 +67,10 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="row ">
-                                                    <div class="col-sm-3">
-                                                        <select class="form-select" aria-label="Default select example" name="action">
-                                                            <option value="" selected>-</option>
-                                                            <option value="paid">Paid</option>
-                                                            <option value="received">Received</option>
-                                                        </select>   
+                                                    <div class="col-sm-4">
+                                                        <input type="text" name="action" class="form-control" id="purpose" placeholder="" value="paid" readonly="readonly">
                                                     </div>
-                                                    <div class="col-sm-9">
+                                                    <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 <center>
@@ -86,41 +94,14 @@
                                         <div class="form-group row">
                                             <div class="col-sm-4">
                                                 <center>
-                                                    <label for="total_amount" class="col-form-label">Total Amount :</label>
+                                                    <label for="total_amount" class="col-form-label">Amount :</label>
                                                 </center>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="text" name="total_amount" class="form-control" id="name" placeholder="" value="">
+                                                <input type="text" name="total_amount" class="form-control" id="name" placeholder="" value="{{$entry_id->amount}}" readonly="readonly">
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="container">
-                                                <center>
-                                                    <table class="table table-striped  border-dark text-center w-75 px-2" id="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Name</th>
-                                                                <!-- <th>Purpose</th> -->
-                                                                <th>Amount</th> 
-                                                                <th>Action</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <td>
-                                                                <input type="text" name="inputs[0][entity_name]" readonly class="form-control table_input" id="name" placeholder="" value="Self">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="inputs[0][amount]"  class="form-control table_input" id="amount" placeholder="-" value="">
-                                                            </td>
-                                                            <td>
-                                                                <button type="button" name="split_btn" class="btn btn-success" id="split_btn">Split</button>
-                                                            </td>
-                                                        </tbody>
-                                                    </table>    
-                                                </center>
-                                            </div>
-                                        </div>
-                                        <br>
+                                       
                                         <div class="col-sm-12">
                                             <center>
                                                 <button type="submit" class="btn" id="submit_btn">Submit</button>
@@ -137,29 +118,33 @@
                 <div class="card" style="margin-top : 10px;">
                     <div class="card-body">
                         <div class="container">
-                            <h3 class="text-center">Today's Transaction</h3>
+                            <h3 class="text-center">All Payables</h3>
                             <br>
                             <table class="table table-striped  border-dark text-center">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>Sr No.</th>
+                                        <th>Id</th>
                                         <th>Name</th>
-                                        <th>Purpose</th>
                                         <th>Amount</th> 
+                                        <th>Confirm</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($todays_transactions as $transaction)
-                                        <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{$transaction->name}}</td>
-                                            <td>{{$transaction->purpose}}</td>
-                                            @if($transaction->action == "received")
-                                            <td style="color:green;"><b>{{$transaction->amount}}</b></td>
-                                            @else
-                                            <td style="color:red;"><b>{{$transaction->amount}}</b></td>
-                                            @endif
-                                        </tr>
+                                    @foreach ($all_payables as $payables)
+                                        @if($payables->id != $entry_id->id)
+                                            <tr>
+                                                <td>{{$payables->id}}</td>
+                                                <td>{{$payables->name}}</td>
+                                                <td style="color:red;"><b>{{$payables->amount}}</b></td> 
+                                                <td>
+                                                <a href="{{url('confirm_payable')}}/{{$payables->id}}" class="btn btn-danger">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+</svg>
+                                                </a>
+                                            </td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>    
@@ -179,54 +164,3 @@
     <!-- Main Form -->
 </body>
 </html>
-<!-- <script>
-    $('document').ready(function()
-    {
-        var i=0;
-        $('#split_btn').click(function(){
-            ++i;
-            $('#table').append(
-                `<tr>
-                <td>
-                    <input type="text" name="inputs[`+i+`][entity_name]" class="form-control table_input" id="name" placeholder="Enter Name" value="">
-                </td>
-                <td>
-                    <input type="text" name="inputs[`+i+`][amount]"  class="form-control table_input" id="amount" placeholder="-" value="">
-                </td>
-                <td>
-                    <button type="submit" name="" class="btn btn-danger remove-row">Remove</button>
-                </td>
-                <tr>`
-            );
-        });
-
-        $(document).on('click','.remove-row',function(){
-            $(this).parents('tr').remove();
-        });
-    });
-</script> -->
-<script>
-    $(document).ready(function() {
-        var i = 0;
-        $('#split_btn').click(function() {
-            ++i;
-            $('#table').append(
-                `<tr>
-                <td>
-                    <input type="text" name="inputs[${i}][entity_name]" class="form-control table_input" id="name" placeholder="Enter Name" value="">
-                </td>
-                <td>
-                    <input type="text" name="inputs[${i}][amount]"  class="form-control table_input" id="amount" placeholder="-" value="">
-                </td>
-                <td>
-                    <button type="button" class="btn btn-danger remove-row">Remove</button>
-                </td>
-                <tr>`
-            );
-        });
-
-        $(document).on('click', '.remove-row', function() {
-            $(this).parents('tr').remove();
-        });
-    });
-</script>

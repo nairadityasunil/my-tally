@@ -24,17 +24,6 @@ class TransactionController extends Controller
    
     public function save_transaction(Request $request)
     {
-        // Validate the form data
-        // $request->validate([
-        //     'name' => 'required|string',
-        //     'purpose' => 'required|string',
-        //     'action' => 'required|in:paid,received',
-        //     'mode' => 'required|in:cash,bank transfer,net banking,upi',
-        //     'total_amount' => 'required|numeric',
-        //     'inputs.*.entity_name' => 'required|string',
-        //     'inputs.*.amount' => 'required|numeric',
-        // ]);
-
         // Create a new transaction
         $transaction = new All_transaction();
         $transaction->name = $request->input('name');
@@ -62,6 +51,10 @@ class TransactionController extends Controller
                     $recievable->amount = $input['amount'];
                     $recievable->transaction_id = $transactionId;
                     $recievable->save();
+                }
+                else if($input['entity_name']!='Self')
+                {
+                    
                 }
             }
         }
@@ -91,7 +84,64 @@ class TransactionController extends Controller
 
     public function delete_transaction($id)
     {
-        
+        $delete_transaction = All_transaction::find($id);
+        if(!is_null($delete_transaction))
+        {
+            // Finding in receivables
+            $entry_in_receivable = Recievable::where('transaction_id' , '=' , $id)->get();
+            if(!is_null($entry_in_receivable))
+            {
+                foreach ($entry_in_receivable as $entry)
+                {
+                    $delete_from_receivable = Recievable::Find($entry->id);
+                    if(!is_null($delete_from_receivable))
+                    {
+                        if($delete_from_receivable->delete())
+                        {
+                            if($delete_transaction->delete())
+                            {
+                                return redirect('/all_transactions');
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Finding in payables
+            else
+            {
+                $entry_in_payable = Payable::where('transaction_id' , '=', $id)->get();
+                if(!is_null($entry_in_payable))
+                {
+                    foreach ($entry_in_entry as $entry)
+                    {
+                        $delete_from_payable = Payable::Find($entry->id);
+                        if(!is_null($delete_from_payable))
+                        {
+                            if($delete_from_payable->delete())
+                            {
+                                if($delete_transaction->delete())
+                                {
+                                    return redirect('/all_transactions');
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Not found in receivable or payable
+                {
+                    if($delete_from_payable->delete())
+                    {
+                        if($delete_transaction->delete())
+                        {
+                            return redirect('/all_transactions');
+                        }
+                    }
+                }
+            }
+
+        }
     }
 }
 

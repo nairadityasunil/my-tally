@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Accounts</title>
+    <title>All Payables</title>
     <link rel="stylesheet" href="frontend/css/bootstrap.min.css">
     <script type="text/javascript" src="frontend/javascript/bootstrap.min.js"></script>
     <script type="text/javascript " src="frontend/javascript/bootstrap.bundle.min.js"></script>
@@ -20,7 +20,7 @@
             <div class="col-sm-10 py-3">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('search_receivable')}}" method="post">
+                        <form action="{{route('search_payable')}}" method="post">
                         @csrf   
                             <div class="col-sm-4">
                                 <div class="row">
@@ -46,13 +46,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-4">
-                                <a href="{{url('new_receivable')}}">
-                                    <button type="button" class="btn _btn"><b>New Recievable</b></button>
+                                <a href="{{url('new_payable')}}">
+                                    <button type="button" class="btn _btn"><b>New Payable</b></button>
                                 </a>
                             </div>
                             <div class="col-sm-4">
                                 <center>
-                                    <h3>All Recievables</h3>
+                                    <h3>All Payables</h3>
                                 </center>
                             </div>
                             <div class="col-sm-12">
@@ -64,7 +64,7 @@
                                 <thead class="thead-dark"  style="position:sticky; top:-17px;">
                                     <tr>
                                         <th>Sr no.</th>
-                                        <th>Recievable Id</th>
+                                        <th>Payable Id</th>
                                         <th>Name</th>
                                         <th>Purpose</th>
                                         <th>Mode</th>
@@ -72,7 +72,7 @@
                                         <th>Transaction Id</th>
                                         <!-- <th>View</th> -->
                                         <th>Date & Time</th>
-                                        <th>Confirm</th>
+                                        <th>Cleared</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -84,14 +84,14 @@
                                             <td>{{$payables->name}}</td>
                                             <td>{{$payables->purpose}}</td>
                                             <td>{{$payables->mode}}</td>
-                                            <td style="color:green;"><b>{{$payables->amount}}</b></td>
+                                            <td style="color:red;"><b>{{$payables->amount}}</b></td>
                                             <td>{{$payables->transaction_id}}</td>
                                             <td>{{$payables->created_at}}</td>
                                             <td>
-                                                <a href="{{url('confirm_receivable')}}/{{$payables->id}}" class="btn btn-success" style="border : 0px;">
+                                                <a href="{{url('confirm_payable')}}/{{$payables->id}}" class="btn btn-danger" style="border : 0px;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
-</svg> <b>Recd</b>
+</svg> <b>Paid</b>
                                                 </a>
                                             </td>
                                         </tr>

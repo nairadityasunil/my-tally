@@ -122,10 +122,10 @@
 </svg></a>
         <div class="collapse items-menu mx-2" id="pending_menu"  style="border-radius : 0px 0px 10px 10px;">
             <div class="menu-item">
-                <a href="" class="a-hover btn btn-link navbar-hover" style = "color : white; text-decoration:none; text-align:justify">Add Receivable</a>
+                <a href="{{url('new_receivable')}}" class="a-hover btn btn-link navbar-hover" style = "color : white; text-decoration:none; text-align:justify">Add Receivable</a>
             </div>
             <div class="menu-item a-hover">
-                <a href="{{route('all_recievables')}}" class="a-hover btn btn-link" style = "color : white; text-decoration:none; text-align:justify">View Receivables</a>
+                <a href="{{route('all_recievables')}}" class="a-hover btn btn-link" style = "color : white; text-decoration:none; text-align:justify">All Receivables</a>
             </div>
         </div>
         <!-- <br> -->
@@ -136,16 +136,16 @@
 </svg></a>
         <div class="collapse items-menu mx-2" id="outstanding_menu"  style="border-radius : 0px 0px 10px 10px;">
             <div class="menu-item">
-                <a href="" class="a-hover btn btn-link navbar-hover" style = "color : white; text-decoration:none; text-align:justify">Add Payable</a>
+                <a href="{{url('new_payable')}}" class="a-hover btn btn-link navbar-hover" style = "color : white; text-decoration:none; text-align:justify">Add Payable</a>
             </div>
             <div class="menu-item a-hover">
-                <a href="" class="a-hover btn btn-link" style = "color : white; text-decoration:none; text-align:justify">View Payable</a>
+                <a href="{{route('all_payables')}}" class="a-hover btn btn-link" style = "color : white; text-decoration:none; text-align:justify">All Payable</a>
             </div>
         </div>
         <!-- <br> -->
     </div>
     <div>
-        <a href="" class="btn btn-link navbar-hover"style = "color : black; text-decoration:none; text-align:justify">Personal Expense</a>
+        <a href="" class="btn btn-link navbar-hover"style = "color : black; text-decoration:none; text-align:justify">Report Master</a>
         <br>
     </div>
     <div>
