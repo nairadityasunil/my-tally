@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use App\Models\All_transaction;
 use App\Models\Recievable;
 use App\Models\Payables;
+use App\Models\Personal_expense;
 
 use Illuminate\Http\Request;
 
@@ -43,6 +44,8 @@ class TransactionController extends Controller
             // Process the dynamic input fields
             foreach ($request->input('inputs') as $input) {
                 $recievable = new Recievable();
+                $new_personal_expense = new Personal_expense();
+                
                 if ($input['entity_name']!='Self')
                 {
                     $recievable->name = $input['entity_name'];
@@ -52,9 +55,14 @@ class TransactionController extends Controller
                     $recievable->transaction_id = $transactionId;
                     $recievable->save();
                 }
-                else if($input['entity_name']!='Self')
+                else if($input['entity_name']=='Self' && $input['amount']!=0)
                 {
-                    
+                    $new_personal_expense->name = $request->input('name');
+                    $new_personal_expense->purpose = $request->input('purpose');
+                    $new_personal_expense->mode = $request->input('mode');
+                    $new_personal_expense->amount = $input['amount'];
+                    $new_personal_expense->transaction_id = $transactionId;
+                    $new_personal_expense->save();  
                 }
             }
         }

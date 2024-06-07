@@ -46,13 +46,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-4 px-4">
-                                <a href="">
+                                <a href="{{route('add_transaction')}}">
                                     <button type="button" class="btn _btn">New Transaction</button>
                                 </a>
-                                <a href="">
+                                <a href="{{url('new_receivable')}}">
                                     <button type="button" class="btn _btn">New Receivable</button>
                                 </a>
-                                <a href="">
+                                <a href="{{url('new_payable')}}">
                                     <button type="button" class="btn _btn">New Payable</button>
                                 </a>
                                 

@@ -139,10 +139,14 @@
                 <a href="{{url('new_payable')}}" class="a-hover btn btn-link navbar-hover" style = "color : white; text-decoration:none; text-align:justify">Add Payable</a>
             </div>
             <div class="menu-item a-hover">
-                <a href="{{route('all_payables')}}" class="a-hover btn btn-link" style = "color : white; text-decoration:none; text-align:justify">All Payable</a>
+                <a href="{{route('all_payables')}}" class="a-hover btn  tn-link" style = "color : white; text-decoration:none; text-align:justify">All Payable</a>
             </div>
         </div>
         <!-- <br> -->
+    </div>
+    <div>
+        <a href="{{route('all_personal_expense')}}" class="btn btn-link navbar-hover"style = "color : black; text-decoration:none; text-align:justify">Personal Expense</a>
+        <br>
     </div>
     <div>
         <a href="" class="btn btn-link navbar-hover"style = "color : black; text-decoration:none; text-align:justify">Report Master</a>

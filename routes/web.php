@@ -3,18 +3,9 @@
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\RecievablesController;
 use App\Http\Controllers\PayablesController;
+use App\Http\Controllers\Personal_expenses;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 // Routes related to transaction section
 Route::get('/add_transaction', [TransactionController::class , 'add_transaction'])->name('add_transaction');
 Route::get('/all_transactions', [TransactionController::class , 'all_transactions'])->name('all_transactions');
@@ -42,5 +33,7 @@ Route::post('/save_payable',[PayablesController::class, 'save_payable'])->name('
 Route::post('/search_payable',[PayablesController::class,'search_payable'])->name('search_payable');
 
 // Routes related to personal expense section
+Route::get('/all_personal_expense',[Personal_expenses::class,'view_all_personal_expense'])->name('all_personal_expense');
+
 
 // Routes related to user master
